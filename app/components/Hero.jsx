@@ -18,7 +18,7 @@ export default function Hero({ hero }) {
 
   return (
     <>
-      <div className="relative h-screen w-screen mb-1 ">
+      <div className="relative h-screen mb-1 ">
         <div className="absolute inset-0 z-0 ">
           <Image
             className="w-full h-full object-cover opacity-90 "
