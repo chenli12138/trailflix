@@ -1,0 +1,56 @@
+"use client";
+import React, { useEffect, useState } from "react";
+import Image from "next/image";
+import Videoplay from "./Videoplay";
+
+export default function Hero({ hero }) {
+  const imgPath = "https://image.tmdb.org/t/p/original";
+
+  const [modalVisible, setModalVisible] = useState(false);
+
+  const openModal = () => {
+    setModalVisible(true);
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+  return (
+    <>
+      <div className="relative h-screen w-screen mb-1 ">
+        <div className="absolute inset-0 z-0 ">
+          <Image
+            className="w-full h-full object-cover opacity-90 "
+            src={imgPath + hero?.backdrop_path}
+            width={1920}
+            height={1080}
+            alt={hero?.title}
+          />
+          <div className="absolute inset-0 bg-gray-900 opacity-40  "></div>
+        </div>
+        <div className="absolute sm:top-[30%] top-[20%] p-4 sm:p-16">
+          <div className="text-3xl sm:text-5xl">{hero?.title}</div>
+          <div className="my-4">
+            <button
+              className=" bg-white text-gray-700 mr-4 py-2 px-5 hover:bg-red-600 hover:text-white "
+              onClick={openModal}
+            >
+              Play
+            </button>
+            <button className=" border border-gray-300 py-2 px-5 hover:bg-red-600 hover:text-white hover:border-red-600">
+              More Info
+            </button>
+          </div>
+          <div className="text-gray-400 text-sm">
+            Released: {hero?.release_date}
+          </div>
+          <div className="w-full md:max-w-[70%] lg:max-w-[50%] xl:max-w-[35%] text-gray-200 mt-1">
+            {hero?.overview}
+          </div>
+        </div>
+      </div>
+      {modalVisible && <Videoplay close={closeModal} trailer={hero.id} />}
+    </>
+  );
+}
