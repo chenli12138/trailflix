@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import Videoplay from "./Videoplay";
+import Link from "next/link";
 
 export default function Hero({ hero }) {
   const imgPath = "https://image.tmdb.org/t/p/original";
@@ -38,9 +39,11 @@ export default function Hero({ hero }) {
             >
               Play
             </button>
-            <button className=" border border-gray-300 py-2 px-5 hover:bg-red-600 hover:text-white hover:border-red-600">
-              More Info
-            </button>
+            <Link href={`/${hero.id}`}>
+              <button className=" border border-gray-300 py-2 px-5 hover:bg-red-600 hover:border-red-600 hover:text-white hover:bo">
+                More Info
+              </button>
+            </Link>
           </div>
           <div className="text-gray-400 text-sm">
             Released: {hero?.release_date}

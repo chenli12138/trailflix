@@ -33,7 +33,6 @@ export default function Row({ fetchURL, rowName, rowID }) {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
       setLikes(doc.data()?.savedShows);
     });
-    console.log("like");
   }, [user?.email]);
 
   // console.log(data);
@@ -54,6 +53,10 @@ export default function Row({ fetchURL, rowName, rowID }) {
       setMovie(updatedData);
     }
   }, [data, likes]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   return (
     <div>
