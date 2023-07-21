@@ -67,7 +67,7 @@ export default function MovieDetail({ params }) {
           <div className="w-full md:flex md:gap-8 md:justify-between">
             <div className="relative">
               <Image
-                className="rounded-md object-cover md:w-[30vw] w-full"
+                className="rounded-md object-cover md:w-[28vw] w-full"
                 src={imgPath + data?.poster_path}
                 width={700}
                 height={700}
