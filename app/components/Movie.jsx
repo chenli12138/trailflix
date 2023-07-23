@@ -10,9 +10,9 @@ import { arrayUnion, doc, updateDoc, arrayRemove } from "firebase/firestore";
 const Movie = ({ title, id, poster_path, like }) => {
   const imgPath = "https://image.tmdb.org/t/p/w500";
   const { user } = UserAuth();
-  // console.log("Movie Card: " + title);
   const userID = doc(db, "users", `${user?.email}`);
 
+  // Heart fuction to add and remove likes in Firebase
   const heartMovie = async () => {
     if (user?.email) {
       if (like == false) {

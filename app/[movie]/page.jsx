@@ -43,8 +43,6 @@ export default function MovieDetail({ params }) {
     });
   }, [user?.email]);
 
-  useEffect(() => console.log(like), [like]);
-
   useEffect(() => {
     if (data != null && like != null) {
       const foundItem = like.find((x) => x.id === data.id);
@@ -65,6 +63,7 @@ export default function MovieDetail({ params }) {
             width={1920}
             height={1080}
             alt={data?.title}
+            priority={true}
           />
           <div className="w-full md:flex md:gap-8 md:justify-between">
             <div className="relative">

@@ -13,6 +13,7 @@ export default function Row({ fetchURL, rowName, rowID }) {
   const [movie, setMovie] = useState(null);
   const { user } = UserAuth();
 
+  // Slider part. rowID is added for controlling different rows
   const slideLeft = () => {
     let sliderL = document.getElementById("slider" + rowID);
     sliderL.scrollLeft = sliderL.scrollLeft - 500;
@@ -21,20 +22,22 @@ export default function Row({ fetchURL, rowName, rowID }) {
     let sliderR = document.getElementById("slider" + rowID);
     sliderR.scrollLeft = sliderR.scrollLeft + 500;
   };
-  // console.log("Row: " + data.movie.title);
 
+  // Loading Movie Data
   useEffect(() => {
     apiConfig(fetchURL).then((res) => {
       setData(res);
     });
   }, []);
 
+  // Loading Likes from Firebase
   useEffect(() => {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
       setLikes(doc.data()?.savedShows);
     });
   }, [user?.email]);
 
+  // Add likes based on Firebase user's Like record
   useEffect(() => {
     if (data != null && likes != null) {
       const updatedData = data.results.map((item) => {
@@ -42,7 +45,6 @@ export default function Row({ fetchURL, rowName, rowID }) {
         const like = foundItem ? true : false;
         return { ...item, like };
       });
-      console.log("updatedData");
       setMovie(updatedData);
     } else if (data != null) {
       const updatedData = data.results.map((item) => ({
@@ -53,9 +55,12 @@ export default function Row({ fetchURL, rowName, rowID }) {
     }
   }, [data, likes]);
 
+  /* for Degbugging
+
   useEffect(() => {
     console.log(data);
   }, [data]);
+  */
 
   return (
     <div>

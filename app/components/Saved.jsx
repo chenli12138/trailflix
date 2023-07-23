@@ -23,14 +23,14 @@ export default function Saved() {
     let sliderR = document.getElementById("slider");
     sliderR.scrollLeft = sliderR.scrollLeft + 500;
   };
-  // console.log("Row: " + data.movie.title);
+
   useEffect(() => {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
       setLikes(doc.data()?.savedShows);
     });
   }, [user?.email]);
 
-  // console.log(data);
+  // Remove Likes from Firebase. All attributes removed
   const removeHeart = async (id, title, img) => {
     await updateDoc(userID, {
       savedShows: arrayRemove({

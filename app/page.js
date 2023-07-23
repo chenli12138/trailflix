@@ -6,7 +6,7 @@ import apiConfig from "./api/apiConfig";
 export default async function Home() {
   const heros = await apiConfig(requestTrending.Trendings);
   const movies = heros.results;
-
+  // Create different Hero pages
   const hero = movies[Math.floor(Math.random() * movies.length)];
   return (
     <>

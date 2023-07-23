@@ -9,6 +9,7 @@ const account = () => {
   const router = useRouter();
   const { user } = UserAuth();
 
+  // Protect Account Link to be used from No Auth opening
   if (!user || user == null) {
     return router.push("/");
   }

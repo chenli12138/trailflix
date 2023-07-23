@@ -1,12 +1,11 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Videoplay from "./Videoplay";
 import Link from "next/link";
 
 export default function Hero({ hero }) {
   const imgPath = "https://image.tmdb.org/t/p/original";
-
   const [modalVisible, setModalVisible] = useState(false);
 
   const openModal = () => {

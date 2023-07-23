@@ -6,6 +6,7 @@ const Videoplay = ({ close, trailer }) => {
   const videoLink = `https://api.themoviedb.org/3/movie/${trailer}/videos?api_key=a629c8b4f55ced2a59abb54b4b198ef8`;
   const [link, setLink] = useState("");
 
+  // Filter out trailers from other videos
   useEffect(() => {
     apiConfig(videoLink).then((res) => {
       const trailerKeys = res.results
@@ -25,19 +26,6 @@ const Videoplay = ({ close, trailer }) => {
     };
   }, []);
 
-  useEffect(() => {
-    console.log(link);
-  }, [link]);
-  console.log(trailer);
-  // useEffect(() => {
-  //   // Apply overflow: hidden to the body element when the modal is opened
-  //   document.body.style.overflow = "hidden";
-
-  //   return () => {
-  //     // Cleanup function: Remove overflow: hidden when the modal is closed
-  //     document.body.style.overflow = "unset";
-  //   };
-  // }, []);
   return (
     <div
       onClick={close}
