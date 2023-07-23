@@ -1,5 +1,4 @@
 "use client";
-
 import React from "react";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
 import { UserAuth } from "../context/AuthContext";
@@ -38,9 +37,9 @@ const Heart = ({ title, id, poster_path, like }) => {
   return (
     <p onClick={heartMovie}>
       {like ? (
-        <FaHeart size={24} className=" text-red-500" />
+        <FaHeart size={24} className="text-red-500" />
       ) : (
-        <FaRegHeart size={24} className=" text-gray-50" />
+        <FaRegHeart size={24} className="text-gray-50" />
       )}
     </p>
   );

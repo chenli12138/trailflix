@@ -35,7 +35,6 @@ export default function Row({ fetchURL, rowName, rowID }) {
     });
   }, [user?.email]);
 
-  // console.log(data);
   useEffect(() => {
     if (data != null && likes != null) {
       const updatedData = data.results.map((item) => {

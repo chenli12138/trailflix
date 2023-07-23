@@ -41,7 +41,7 @@ const Movie = ({ title, id, poster_path, like }) => {
 
   return (
     <>
-      <div className="text-center relative w-32  lg:w-[220px] inline-block mx-4">
+      <div className="text-center relative w-32 lg:w-[220px] inline-block mx-4">
         <Image
           src={imgPath + poster_path}
           alt={title}
@@ -50,12 +50,12 @@ const Movie = ({ title, id, poster_path, like }) => {
           className="rounded-lg"
         />
 
-        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 hover:opacity-100 hover:bg-gray-700/60 duration-300">
+        <div className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center opacity-0 hover:opacity-100 hover:bg-gray-700/60 duration-300 px-2">
           <div className="text-xs sm:text-sm px-1 whitespace-normal">
             {title}
           </div>
           <Link href={`/${id}`}>
-            <div className="mt-5 px-8 py-3 rounded-full bg-amber-400 hover:bg-amber-600 duration-300 text-xs sm:text-sm wrap">
+            <div className="mt-5 sm:px-8 px-4 py-3 rounded-full bg-amber-400 hover:bg-amber-600 duration-300 text-xs sm:text-sm">
               More Details
             </div>
           </Link>

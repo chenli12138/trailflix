@@ -28,7 +28,6 @@ export default function Saved() {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
       setLikes(doc.data()?.savedShows);
     });
-    console.log(likes);
   }, [user?.email]);
 
   // console.log(data);

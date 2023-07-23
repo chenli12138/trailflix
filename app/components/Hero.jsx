@@ -40,7 +40,7 @@ export default function Hero({ hero }) {
               Play
             </button>
             <Link href={`/${hero.id}`}>
-              <button className=" border border-gray-300 py-2 px-5 hover:bg-red-600 hover:border-red-600 hover:text-white hover:bo">
+              <button className=" border border-gray-300 py-2 px-5 hover:bg-red-600 hover:border-red-600 hover:text-white">
                 More Info
               </button>
             </Link>

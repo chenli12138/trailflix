@@ -43,9 +43,11 @@ export default function MovieDetail({ params }) {
     });
   }, [user?.email]);
 
+  useEffect(() => console.log(like), [like]);
+
   useEffect(() => {
     if (data != null && like != null) {
-      const foundItem = like.find((x) => x.id === movie);
+      const foundItem = like.find((x) => x.id === data.id);
       const found = foundItem ? true : false;
       setHeart(found);
     } else if (data != null) {
