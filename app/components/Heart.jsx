@@ -13,6 +13,7 @@ const Heart = ({ title, id, poster_path, like }) => {
     if (user?.email) {
       if (like == false) {
         like = true;
+        console.log("try to like");
         await updateDoc(userID, {
           savedShows: arrayUnion({
             id: id,
@@ -22,6 +23,7 @@ const Heart = ({ title, id, poster_path, like }) => {
         });
       } else {
         like = false;
+        console.log("try to un like");
         await updateDoc(userID, {
           savedShows: arrayRemove({
             id: id,
@@ -37,9 +39,9 @@ const Heart = ({ title, id, poster_path, like }) => {
   return (
     <p onClick={heartMovie}>
       {like ? (
-        <FaHeart size={24} className="text-red-500" />
+        <FaHeart size={24} className="  text-red-500" />
       ) : (
-        <FaRegHeart size={24} className="text-gray-50" />
+        <FaRegHeart size={24} className="  text-gray-50" />
       )}
     </p>
   );
