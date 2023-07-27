@@ -84,7 +84,7 @@ export default function Saved() {
                     >
                       <FaHeart
                         size={24}
-                        className=" absolute top-4 left-4 text-red-500"
+                        className="cursor-pointer absolute top-4 left-4 text-red-500"
                       />
                     </p>
                   </div>

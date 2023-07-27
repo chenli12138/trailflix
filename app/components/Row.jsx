@@ -49,7 +49,7 @@ export default function Row({ fetchURL, rowName, rowID }) {
   useEffect(() => {
     if (data != null && likes != null) {
       const updatedData = data.results.map((item) => {
-        const foundItem = likes.find((x) => x.id === item.id);
+        const foundItem = likes.find((x) => x.id == item.id);
         const like = foundItem ? true : false;
         return { ...item, like };
       });
