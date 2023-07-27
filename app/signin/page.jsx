@@ -72,9 +72,9 @@ const Signin = () => {
                 </div>
                 <p className="py-8">
                   <span className="text-gray-600">
-                    Already subscribed to Netflix?
+                    Not subscribed to Trailflix?
                   </span>{" "}
-                  <Link href="/signin">Sign In</Link>
+                  <Link href="/signup">Sign Up</Link>
                 </p>
               </form>
             </div>
