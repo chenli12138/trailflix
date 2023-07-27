@@ -1,23 +1,34 @@
 "use client";
 import React, { useState, useEffect } from "react";
-import apiConfig from "../api/apiConfig";
 
 const Videoplay = ({ close, trailer }) => {
-  const videoLink = `https://api.themoviedb.org/3/movie/${trailer}/videos?api_key=a629c8b4f55ced2a59abb54b4b198ef8`;
   const [link, setLink] = useState("");
 
   // Filter out trailers from other videos
   useEffect(() => {
-    apiConfig(videoLink).then((res) => {
-      const trailerKeys = res.results
-        .filter((item) => item.name.toLowerCase().includes("trailer"))
-        .map((item) => item.key);
+    async function fetchVideoAndSetLink(trailer) {
+      try {
+        const response = await fetch("/api/video", {
+          method: "POST",
+          body: JSON.stringify(trailer),
+        });
+        const data = await response.json();
 
-      if (trailerKeys.length > 0) {
-        const randomIndex = Math.floor(Math.random() * trailerKeys.length);
-        setLink(trailerKeys[randomIndex]);
+        const trailerKeys = data.results
+          .filter((item) => item.name.toLowerCase().includes("trailer"))
+          .map((item) => item.key);
+
+        if (trailerKeys.length > 0) {
+          const randomIndex = Math.floor(Math.random() * trailerKeys.length);
+          setLink(trailerKeys[randomIndex]);
+        }
+      } catch (error) {
+        console.error("Error fetching video:", error);
       }
-    });
+    }
+
+    // Call the function where needed
+    fetchVideoAndSetLink(trailer);
     // Apply overflow: hidden to the body element when the modal is opened
     document.body.style.overflow = "hidden";
     return () => {

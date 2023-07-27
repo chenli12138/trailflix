@@ -1,6 +1,5 @@
 "use client";
 import Movie from "../components/Movie";
-import apiConfig from "../api/apiConfig";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
@@ -25,9 +24,18 @@ export default function Row({ fetchURL, rowName, rowID }) {
 
   // Loading Movie Data
   useEffect(() => {
-    apiConfig(fetchURL).then((res) => {
-      setData(res);
-    });
+    async function fetchData() {
+      try {
+        // Send a request to your API route
+        const response = await fetch(`/api/${fetchURL}`); // Relative URL for the API route
+        const data = await response.json();
+
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
   }, []);
 
   // Loading Likes from Firebase

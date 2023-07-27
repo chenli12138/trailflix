@@ -1,6 +1,6 @@
 "use client";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { useEffect, useState } from "react";
 import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";

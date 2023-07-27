@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
 import { BsDot, BsFillStarFill, BsPlayCircle } from "react-icons/bs";
-import apiConfig from "../api/apiConfig";
 import { useState, useEffect } from "react";
 import Videoplay from "../components/Videoplay";
 import { UserAuth } from "../context/AuthContext";
@@ -20,12 +19,20 @@ export default function MovieDetail({ params }) {
 
   // Load movie details
   useEffect(() => {
-    apiConfig(
-      `https://api.themoviedb.org/3/movie/${movie}?api_key=a629c8b4f55ced2a59abb54b4b198ef8`
-    ).then((res) => {
-      setData(res);
-    });
+    async function fetchData() {
+      try {
+        // Send a request to your API route
+        const response = await fetch(`/api/${movie}`); // Relative URL for the API route
+        const data = await response.json();
+
+        setData(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    }
+    fetchData();
   }, []);
+
   // Set up modal for video
   const [modalVisible, setModalVisible] = useState(false);
 
@@ -54,10 +61,6 @@ export default function MovieDetail({ params }) {
     }
   }, [data, like]);
 
-  useEffect(() => {
-    console.log(updatedData);
-    console.log(like);
-  }, [data, like]);
   return (
     <>
       {updatedData && (
