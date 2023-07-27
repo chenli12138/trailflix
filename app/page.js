@@ -2,7 +2,7 @@ import Hero from "./components/Hero";
 import Row from "./components/Row";
 
 export default async function Home() {
-  const res = await fetch("http://localhost:3000/api/trend");
+  const res = await fetch("http://trailflix-pi.vercel.app/api/trend");
   const heros = await res.json();
   const movies = heros.results;
   // Create different Hero pages
