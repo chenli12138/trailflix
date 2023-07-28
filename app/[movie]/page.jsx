@@ -78,8 +78,10 @@ export default function MovieDetail({ params }) {
               <Image
                 className="rounded-md object-cover md:w-[28vw] w-full"
                 src={imgPath + updatedData?.poster_path}
-                width={700}
+                width={500}
                 height={700}
+                priority={true}
+                quality={80}
                 alt={updatedData?.title}
               />
               <div className=" absolute top-0 right-0 w-full h-full opacity-0 hover:opacity-100 hover:bg-slate-400/40 flex items-center justify-center duration-300">
