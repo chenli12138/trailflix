@@ -1,17 +1,10 @@
 import Hero from "./components/Hero";
 import Row from "./components/Row";
 
-export default async function Home() {
-  const res = await fetch(
-    "http://https://trailflix-chenli12138.vercel.app/api/trend"
-  );
-  const heros = await res.json();
-  const movies = heros.results;
-  // Create different Hero pages
-  const hero = movies[Math.floor(Math.random() * movies.length)];
+export default function Home() {
   return (
     <>
-      <Hero hero={hero} />
+      <Hero />
       <Row rowID={1} fetchURL={"trend"} rowName={"Trending"} />
       <Row rowID={2} fetchURL={"coming"} rowName={"Upcoming"} />
       <Row rowID={3} fetchURL={"top"} rowName={"Top Rated"} />
