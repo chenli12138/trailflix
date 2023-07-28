@@ -9,7 +9,7 @@ export default function Hero() {
   const [modalVisible, setModalVisible] = useState(false);
 
   const [hero, setData] = useState(null);
-  // const [isLoading, setLoading] = useState(true);
+  const [isLoading, setLoading] = useState(true);
 
   // Loading Movie Data
   useEffect(() => {
@@ -22,7 +22,7 @@ export default function Hero() {
         // Create different Hero pages
         const hero = movies[Math.floor(Math.random() * movies.length)];
         setData(hero);
-        // setLoading(false);
+        setLoading(false);
       } catch (error) {
         console.error("Error fetching data:", error);
       }
@@ -30,12 +30,12 @@ export default function Hero() {
     fetchData();
   }, []);
 
-  // if (isLoading)
-  //   return (
-  //     <div className="absolute inset-0 z-40  bg-slate-400">
-  //       <div className="w-full h-full bg-black z-30 animate-pulse"></div>
-  //     </div>
-  //   );
+  if (isLoading)
+    return (
+      <div className="absolute inset-0 z-40  bg-slate-400">
+        <div className="w-full h-full bg-black z-30 animate-pulse"></div>
+      </div>
+    );
 
   const openModal = () => {
     setModalVisible(true);
