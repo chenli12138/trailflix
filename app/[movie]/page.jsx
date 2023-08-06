@@ -55,9 +55,9 @@ export default function MovieDetail({ params }) {
       // Check if the item in data exists in like array
       const likeItem = like.find((x) => x.id == data.id);
       const likeStatus = likeItem ? true : false;
-      setUpdated({ ...data, like: likeStatus });
+      setUpdated({ ...data, likeStatus });
     } else if (data != null) {
-      setUpdated({ ...data, like: false });
+      setUpdated({ ...data, likeStatus: false });
     }
   }, [data, like]);
 
@@ -116,7 +116,7 @@ export default function MovieDetail({ params }) {
                   id={movie}
                   title={updatedData?.title}
                   poster_path={updatedData?.poster_path}
-                  like={updatedData?.like}
+                  like={updatedData?.likeStatus}
                 />
               </div>
               <p className="mt-2">{updatedData?.overview}</p>
