@@ -91,7 +91,7 @@ export default function Row({ fetchURL, rowName, rowID }) {
                 id={movie?.id}
                 title={movie?.title}
                 poster_path={movie?.poster_path}
-                like={movie.like}
+                like={movie?.like}
               />
             ))}
         </div>

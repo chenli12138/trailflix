@@ -12,7 +12,7 @@ export default function MovieDetail({ params }) {
   const { movie } = params;
   const imgPath = "https://image.tmdb.org/t/p/original";
   const [data, setData] = useState(null);
-  const [like, setLike] = useState(null);
+  const [likes, setLikes] = useState(null);
   const [updatedData, setUpdated] = useState(null);
 
   const { user } = UserAuth();
@@ -46,20 +46,20 @@ export default function MovieDetail({ params }) {
   // Load Likes from firebase
   useEffect(() => {
     onSnapshot(doc(db, "users", `${user?.email}`), (doc) => {
-      setLike(doc.data()?.savedShows);
+      setLikes(doc.data()?.savedShows);
     });
   }, [user?.email]);
 
   useEffect(() => {
-    if (data != null && like != null) {
+    if (data != null && likes != null) {
       // Check if the item in data exists in like array
-      const likeItem = like.find((x) => x.id == data.id);
+      const likeItem = likes.find((x) => x.id == data.id);
       const likeStatus = likeItem ? true : false;
-      setUpdated({ ...data, like: likeStatus });
+      setUpdated({ ...data, likeStatus });
     } else if (data != null) {
-      setUpdated({ ...data, like: false });
+      setUpdated({ ...data, likeStatus: false });
     }
-  }, [data, like]);
+  }, [data, likes]);
 
   return (
     <>
@@ -113,10 +113,10 @@ export default function MovieDetail({ params }) {
                   {updatedData?.status}
                 </h2>
                 <Heart
-                  id={movie}
+                  id={updatedData?.id}
                   title={updatedData?.title}
                   poster_path={updatedData?.poster_path}
-                  like={updatedData?.like}
+                  like={updatedData?.likeStatus}
                 />
               </div>
               <p className="mt-2">{updatedData?.overview}</p>
