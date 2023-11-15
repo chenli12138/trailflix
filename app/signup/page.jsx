@@ -61,8 +61,10 @@ const Signup = () => {
                 </button>
                 <div className="flex justify-between items-center text-sm text-gray-600">
                   <p>
-                    <input className="mr-2" type="checkbox" />
-                    Remember me
+                    <label>
+                      <input className="mr-2" type="checkbox" />
+                      Remember me
+                    </label>
                   </p>
                   <p>Need Help?</p>
                 </div>

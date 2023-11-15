@@ -64,10 +64,12 @@ const Signin = () => {
                   Sign In
                 </button>
                 <div className="flex justify-between items-center text-sm text-gray-600">
-                  <p>
-                    <input className="mr-2" type="checkbox" />
-                    Remember me
-                  </p>
+                  <div>
+                    <label>
+                      <input className="mr-2" type="checkbox" />
+                      Remember me
+                    </label>
+                  </div>
                   <p>Need Help?</p>
                 </div>
                 <p className="py-8">
