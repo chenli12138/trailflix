@@ -20,8 +20,18 @@ const Signin = () => {
       await logIn(email, password);
       router.push("/");
     } catch (error) {
-      console.log(error);
-      setError(error.message);
+      console.log({ error });
+      if (error.code.includes("invalid-email")) {
+        setError("Email is missing or invalid");
+      } else if (error.code.includes("missing-password")) {
+        setError("Password is missing");
+      } else if (error.code.includes("wrong-password")) {
+        setError("Incorrect password");
+      } else if (error.code.includes("user-not-found")) {
+        setError("User not found");
+      } else {
+        setError("An unexpected error occurred");
+      }
     }
   };
 
