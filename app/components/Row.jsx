@@ -1,4 +1,5 @@
 "use client";
+import useSWR from "swr";
 import Movie from "../components/Movie";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
 import { useEffect, useState } from "react";
@@ -6,8 +7,10 @@ import { UserAuth } from "../context/AuthContext";
 import { db } from "../firebase";
 import { doc, onSnapshot } from "firebase/firestore";
 
+const fetcher = (url) => fetch(url).then((res) => res.json());
+
 export default function Row({ fetchURL, rowName, rowID }) {
-  const [data, setData] = useState(null);
+  const { data, error } = useSWR(`/api/${fetchURL}`, fetcher);
   const [likes, setLikes] = useState(null);
   const [movie, setMovie] = useState(null);
   const { user } = UserAuth();
@@ -21,22 +24,6 @@ export default function Row({ fetchURL, rowName, rowID }) {
     let sliderR = document.getElementById("slider" + rowID);
     sliderR.scrollLeft = sliderR.scrollLeft + 500;
   };
-
-  // Loading Movie Data
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        // Send a request to your API route
-        const response = await fetch(`/api/${fetchURL}`); // Relative URL for the API route
-        const data = await response.json();
-
-        setData(data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    }
-    fetchData();
-  }, []);
 
   // Loading Likes from Firebase
   useEffect(() => {
@@ -53,6 +40,7 @@ export default function Row({ fetchURL, rowName, rowID }) {
         const like = foundItem ? true : false;
         return { ...item, like };
       });
+      ``;
       setMovie(updatedData);
     } else if (data != null) {
       const updatedData = data.results.map((item) => ({

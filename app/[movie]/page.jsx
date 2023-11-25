@@ -24,7 +24,7 @@ export default function MovieDetail({ params }) {
         // Send a request to your API route
         const response = await fetch(`/api/${movie}`); // Relative URL for the API route
         const data = await response.json();
-
+        console.log(data);
         setData(data);
       } catch (error) {
         console.error("Error fetching data:", error);
