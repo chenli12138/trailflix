@@ -14,5 +14,7 @@ export async function GET(request) {
     "https://api.themoviedb.org/3/movie/top_rated",
     options
   );
+
+  const data = await res.json();
   return NextResponse.json(data);
 }
