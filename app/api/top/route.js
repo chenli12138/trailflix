@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { revalidatePath } from "next/cache";
 
 export async function GET(request) {
   const options = {
@@ -16,5 +17,6 @@ export async function GET(request) {
   );
 
   const data = await res.json();
+  revalidatePath(request.url);
   return NextResponse.json(data);
 }
