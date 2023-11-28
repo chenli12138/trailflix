@@ -16,6 +16,6 @@ export async function GET(request) {
   );
 
   const data = await res.json();
-  revalidatePath("/api/popular");
+  revalidatePath("/api/trend");
   return NextResponse.json(data);
 }
