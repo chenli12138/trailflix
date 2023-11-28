@@ -1,13 +1,6 @@
 import { NextResponse } from "next/server";
 
-export async function GET() {
-  let cache = null;
-  let cacheExpiry = null;
-  const cacheDuration = 3600 * 1000;
-
-  if (cache && cacheExpiry && cacheExpiry > Date.now()) {
-    return NextResponse.json(data);
-  }
+export async function GET(request) {
   const options = {
     method: "GET",
     headers: {
@@ -21,9 +14,5 @@ export async function GET() {
     "https://api.themoviedb.org/3/movie/top_rated",
     options
   );
-
-  const data = await res.json();
-  cache = data;
-  cacheExpiry = Date.now() + cacheDuration;
   return NextResponse.json(data);
 }
