@@ -16,6 +16,6 @@ export async function GET(request) {
   );
 
   const data = await res.json();
-  revalidatePath("/api/trend");
+  revalidatePath(request.url);
   return NextResponse.json(data);
 }
